@@ -2,20 +2,11 @@ import java.util.Random;
 
 public class Link {
 
-    int toId;
+    Node toNode;
     double prob;
 
-    public Link (int toId, double prob) {
-        this.toId = toId;
+    public Link (Node toNode, double prob) {
+        this.toNode = toNode;
         this.prob = prob;
-    }
-
-    public boolean sendOver (byte[] payload) {
-        if (new Random().nextFloat() < this.prob) {
-            // send it
-            return true;
-        }
-
-        return false;
     }
 }
