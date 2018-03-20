@@ -38,13 +38,14 @@ public class Main {
             batch.add(new ExOrPacket(0, i, batch_size, 0, 0, forward_list, batch_map, "hello".getBytes()));
         }
 
-        // send the packets
-        for (ExOrPacket packet : batch) {
-            src.send(packet);
-        }
-
-        for (Node n : forward_list) {
-            n.flush();
+        while (dst.packets.size() != batch_size) {
+            // send the packets
+            for (ExOrPacket packet : batch) {
+                src.send(packet);
+            }
+            for (Node n : forward_list) {
+                n.flush();
+            }
         }
 
         for (ExOrPacket packet : dst.packets) {
